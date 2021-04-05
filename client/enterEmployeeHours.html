@@ -1,0 +1,187 @@
+<div class="container">
+    <div id="enterHours">
+
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center adminHomeMenu" style="background-color:white">
+
+            <!-- Title -->
+            <h2 class="card-title h2">Enter Hours worked by an employee.</h2>
+
+
+            <!-- Grid row -->
+            <div class="row d-flex justify-content-center">
+
+                <!-- Grid column -->
+                <div class="col-xl-7 pb-2">
+
+                    <p class="card-text">
+                        Select a week ending that an employee has worked on a joborder.
+                        Enter in the hours spent per day and submit.
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+            <hr class="my-4">
+
+
+
+        </div>
+
+        <!--Table to select employee , week ending and job order-->
+        <table class="table-hover table pointer">
+
+            <thead>
+                <tr>
+
+                    <th>Employee</th>
+                    <th>Week Ending</th>
+                    <th>Job Order</th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <!--Use select list for all current employees-->
+                        <select v-model="employeeId" name="employee" class="form-control border-primary ">
+                            <option v-for="emp of employees" :value="emp.employee_number">{{emp.first_name}}</option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <input type="date" class="form-control border-primary " v-model="weekEnding">
+                    </td>
+
+
+                    <td>
+                        <!--Use select list for all current joborders-->
+                        <select name="joborder" v-model="jobOrder" class="form-control border-primary">
+                            <option v-for="job of jobOrders" :value="job.job_order_number">{{job.job_order_number}}</option>
+                        </select>
+                    </td>
+
+
+
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+        <!-- Table To Enter hours-->
+        <table class="table-hover table pointer">
+
+            <thead>
+                <tr>
+
+
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                    <th>Total</th>
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+
+
+
+
+
+
+
+                    <!--Put all inputs as type number and add keyup event to display the total hours entered on change-->
+
+                    <td>
+                        <input type="number" name="" min="0" v-on:keyup="getTotalHours" class="form-control border-primary" v-model="monday">
+                    </td>
+
+
+                    <td>
+                        <input type="number" name="" class="form-control border-primary" v-on:keyup="getTotalHours" v-model="tuesday">
+                    </td>
+
+
+                    <td>
+                        <input type="number" name="" class="form-control border-primary"  v-on:keyup="getTotalHours" v-model="wednesday">
+                    </td>
+
+
+                    <td>
+                        <input type="number" name="" class="form-control border-primary" v-on:keyup="getTotalHours"  v-model="thursday">
+                    </td>
+
+
+                    <td>
+                        <input type="number" name="" class="form-control border-primary" v-on:keyup="getTotalHours" v-model="friday">
+                    </td>
+
+
+                    <td>
+                        <input type="number" name="" class="form-control border-primary"  v-on:keyup="getTotalHours" v-model="saturday">
+                    </td>
+
+
+                    <td>
+                        <input type="number" name="" class="form-control border-primary" v-on:keyup="getTotalHours"  v-model="sunday">
+                    </td>
+
+                    <td>
+                        {{total}}
+                    </td>
+
+
+
+
+
+
+
+
+
+
+                </tr>
+            </tbody>
+        </table>
+
+        
+        
+                <button class="btn btn-primary w-100" v-on:click="submitHours"> Add Hours </button>
+            
+               
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <script src="./client/enterHours.js"></script>
+</div>

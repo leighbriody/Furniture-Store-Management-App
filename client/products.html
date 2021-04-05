@@ -1,0 +1,214 @@
+<div class="container">
+  <div id="Product">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center adminHomeMenu" style="background-color:white">
+
+      <!-- Title -->
+      <h2 class="card-title h2">Products Page</h2>
+
+
+      <!-- Grid row -->
+      <div class="row d-flex justify-content-center">
+
+        <!-- Grid column -->
+        <div class="col-xl-7 pb-2">
+
+          <p class="card-text">
+            Here you can add new products or view , edit or delete products.
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+      <hr class="my-4">
+
+      <div class="pt-2">
+
+        <button type="button" class="btn btn-outline-primary waves-effect" v-on:click="toggleForm">
+          <span v-if="!showForm">Add Product</span>
+          <span v-else>Hide Add Product From</span>
+        </button>
+        <button type="button" class="btn btn-outline-primary waves-effect" v-on:click="toggleProductsTable">
+          <span v-if="!showProductsTable">View All Products</span>
+          <span v-else>Hide All Products</span>
+        </button>
+
+
+      </div>
+
+    </div>
+
+
+    <!--ADD PRODUCT FORM-->
+    <div v-if="showForm == true">
+      <add-product></add-product>
+    </div>
+
+
+
+
+
+    <!--If show products table button clicked show this div-->
+    <div v-if="showProductsTable">
+
+    
+
+
+    <!--If edit product button is clicked we want to show this div -->
+    <div v-if="edit == true">
+
+      <table class="table-hover table">
+          <h2>Update product : {{editForm.productName}}</h2>
+          <thead>
+              <tr>
+                  <th>Product Id</th>
+                  <th>Product Name</th>
+                  <th>Product Price</th>
+                  <th>Time To Build (Hrs)</th>
+                  <th>Material Cost</th>
+                  <th>Description</th>
+                  <th>quantity</th>
+                  
+
+              </tr>
+          </thead>
+          <tbody>
+
+             
+
+            
+              <tr>
+                 
+                  
+                  <td>
+                      
+                     
+                     {{editForm.productId}}
+                      
+                      
+                      
+                  </td>
+
+                  <!--V model each inpu to the edit form values so the previous values will be there to change. -->
+
+                  <td>
+                      <input type="text" v-model="editForm.productName" class="form-control" >
+                     
+                  </td>
+
+                  <td>
+                    
+                      <input type="number" v-model="editForm.productPrice" class="form-control" >
+                  </td>
+
+                  <td>
+                    
+                      <input type="number" v-model="editForm.timeToBuild" class="form-control">
+                  </td>
+                  
+                  <td>
+                      
+                      <input type="number" v-model="editForm.materialCost" class="form-control" >
+                  </td>
+                  
+                  
+                  <td>
+                      
+                      <input type="text" v-model="editForm.description" class="form-control" >
+                  </td>
+
+                  <td>
+                      
+                    <input type="text" v-model="editForm.quantity" class="form-control" >
+                </td>
+
+                  
+                  
+                
+                  <td v-if="!edit"><button type="button" v-on:click="editProduct(product)" class="btn btn-info btn-xs">Edit</button></td>
+
+                  
+                  <td v-else><button type="button" v-on:click="cancelEdit" class="btn btn-danger">Cancle</button></td>
+                  <td> <button type="button" v-on:click="updateProduct" class="btn btn-primary bn-s" v-if="edit">Update</button></td>
+                 
+                 
+
+
+              </tr>
+                </div>
+          </tbody>
+      </table>
+      
+
+  </div>
+
+
+  <!--PRODUCTS TABLE-->
+  <div class="card-body p-0">
+            
+    <table class="table-hover table pointer">
+      
+        <thead>
+            <tr>
+            <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Time To Build</th>
+                <th>Material Cost</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Edit</th>
+              
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr v-for="product of displayProducts">
+               <td>{{product.product_id}}</td>
+                <td>{{product.product_name}}</td>
+                <td>{{product.product_price}}</td>
+                <td>{{product.time_to_build}}</td>
+                <td>{{product.material_cost}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.quantity}}</td>
+                <td><button type="button" v-on:click="deleteProduct(product.product_id)" class="btn btn-danger">Delete</button></td>
+                <td><button type="button" v-on:click="editProduct(product)" class="btn btn-info btn-xs">Edit</button></td>
+               
+                
+            </tr>
+        </tbody>
+    </table>
+    <div class="card-footer">
+      <ul class="pagination m-0">
+          <li v-for="i in pageCount" class="page-item" v-on:click="selPage=i-1"  v-bind:class="{active : selPage==i-1}">
+              <a class="page-link hand">{{i}}</a>
+          </li>
+      </ul>
+  </div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+    
+
+
+
+      
+    
+
+  </div>
+  <script src="./client/products.js"></script>
+</div>

@@ -1,0 +1,119 @@
+<div class="container">
+    <div id="users">
+
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center adminHomeMenu" style="background-color:white">
+
+            <!-- Title -->
+            <h2 class="card-title h2">Users Page </h2>
+            <!-- Subtitle -->
+            <p class="blue-text my-4 font-weight-bold"> </p>
+
+            <!-- Grid row -->
+            <div class="row d-flex justify-content-center">
+
+                <!-- Grid column -->
+                <div class="col-xl-7 pb-2">
+
+                    <p class="card-text"> Here you can view , delete or create users. </p>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+            <hr class="my-4">
+
+            <div class="pt-2">
+
+                
+                <button type="button" class="btn btn-outline-primary waves-effect" v-on:click="toggleShowUsers">
+                    <span v-if="!viewUsers">View Users</span>
+                    <span v-else>Hide Users</span>
+                </button>
+
+                <!--This will toggle the add new user form-->
+                <button type="button" class="btn btn-outline-primary waves-effect" v-on:click="toggleAddUserForm">
+                    <span v-if="!addUserForm">Add New User</span>
+                    <span v-else>Hide Add New User Form</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+        
+        <!--USERS TABLE-->
+        <div v-if="viewUsers == true">
+        <table class="table-hover table pointer">
+
+            <thead>
+                <tr>
+
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Type</th>
+                    <th>Remove</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr v-for="user of displayUsers">
+
+                    <td>{{user.ID}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.type}}</td>
+                    <td><button type="button" v-on:click="deleteUser(user.ID)" class="btn btn-danger">Delete</button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div class="card-footer">
+            <ul class="pagination m-0">
+                <li v-for="i in pageCount" class="page-item" v-on:click="selPage=i-1"  v-bind:class="{active : selPage==i-1}">
+                    <a class="page-link hand">{{i}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   
+
+
+
+        <div v-if="addUserForm">
+            <add-user></add-user>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>
+
+<script src="./client/users.js"></script>
+
+</div>

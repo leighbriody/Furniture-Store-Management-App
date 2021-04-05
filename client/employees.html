@@ -1,0 +1,154 @@
+<div class="container">
+    <div id='employee'>
+
+
+        <!--JUMBOTRON-->
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center adminHomeMenu" style="background-color:white">
+
+            <!-- Title -->
+            <h2 class="card-title h2">Employees Page</h2>
+
+
+            <!-- Grid row -->
+            <div class="row d-flex justify-content-center">
+
+                <!-- Grid column -->
+                <div class="col-xl-7 pb-2">
+
+                    <p class="card-text">
+                        Here you can Add , Update or Remove Employee's.
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+            <hr class="my-4">
+
+            <div class="pt-2">
+
+                <button type="button" class="btn btn-outline-primary waves-effect" v-on:click="toggleAddEmployeeForm">
+                    <span v-if="!addEmployeeForm">Add Employee</span>
+                    <span v-else>Hide Add Employee</span>
+                </button>
+                <button type="button" class="btn btn-outline-primary waves-effect"
+                    v-on:click="toggleViewAllEmployeeTable">
+                    <span v-if="!viewAllEmployeeTable">View All Employee's.</span>
+                    <span v-else>Hide All Employee's.</span>
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+        <!--If add employee button was clicked show this component-->
+        <div v-if="addEmployeeForm == true">
+            <add-employee></add-employee>
+        </div>
+
+
+
+        <!--If view all employees button was clicked show this component-->
+        <div v-if="viewAllEmployeeTable">
+
+
+
+            <!-- if edit employee button was clicked show this component and v bind the chosen employee -->
+            <div v-if="employeeToEdit!= null">
+                <edit-employee v-bind:employee="employeeToEdit" v-on:cancel='cancelEdit'></edit-employee>
+            </div>
+
+
+            <div class="card-body p-0">
+
+                <table class="table-hover table pointer">
+                    <thead>
+                        <tr>
+                            <th>Employee Number</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Telephone</th>
+                            <th>DOB</th>
+                            <th>Remove</th>
+                            <th>Edit</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr v-for="employee of displayEmployees">
+
+
+                            <td> {{employee.employee_number}}</td>
+
+                            <td> {{employee.first_name}} </td>
+
+                            <td> {{employee.last_name}}</td>
+        
+                             <td>  {{employee.email}} </td>
+
+                            <td> {{employee.telephone}} </td>
+
+
+                            <td> {{employee.DOB}} </td>
+
+
+                            <td><button type="button" v-on:click="deleteEmployee(employee.employee_number)"   class="btn btn-danger">Delete</button></td>
+
+                            <td v-if="!edit"><button type="button" v-on:click="editEmployee(employee)"           class="btn btn-info btn-xs">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <div class="card-footer">
+                <ul class="pagination m-0">
+                    <li v-for="i in pageCount" class="page-item" v-on:click="selPage=i-1"  v-bind:class="{active : selPage==i-1}">
+                        <a class="page-link hand">{{i}}</a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+<script src="./client/employees.js"></script>
+</div>

@@ -1,0 +1,39 @@
+
+/* Header and nav styles */
+
+.navbar-brand {
+  padding-right: 10%;
+}
+
+
+/* Add Poduct Admin Body form */
+
+.addProductForm {
+    width:80%;
+    margin:0 auto;
+   
+}
+
+
+/* Main Body Styleing */
+
+.adminHomeMenu {
+    margin-top: 5%;
+}
+
+.addProductDiv {
+  margin-bottom: 10%;
+}
+
+
+.allOrdersDiv{
+  margin-bottom: 10%;
+}
+
+/*This is so the footer doesnt overlap any content or buttons*/
+.container {
+padding-bottom: 140px;
+}
+
+
+
